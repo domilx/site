@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import React, { useRef } from "react";
 import {
   AnimatePresence,
   motion,
@@ -26,13 +26,25 @@ interface BlurFadeProps {
   blur?: string;
 }
 
+interface BlueFadeStaggerChildrenProps {
+  children: React.ReactNode;
+  className?: string;
+  staggerDelay?: number;
+  initialDelay?: number;
+  blurFadeProps?: Omit<BlurFadeProps, "children">;
+  inView?: boolean;
+  delay?: number;
+  inViewMargin?: MarginType;
+  yOffset?: number;
+}
+
 export default function BlurFade({
   children,
   className,
   variant,
   duration = 0.4,
   delay = 0,
-  yOffset = 6,
+  yOffset = 8,
   inView = false,
   inViewMargin = "-50px",
   blur = "6px",
@@ -61,6 +73,39 @@ export default function BlurFade({
         className={className}
       >
         {children}
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
+export function BlueFadeStaggerChildren({
+  children,
+  className,
+  staggerDelay = 0.04,
+  blurFadeProps = {},
+  delay = 0,
+  yOffset = 8,
+  inView = false,
+  inViewMargin = "-50px",
+}: BlueFadeStaggerChildrenProps) {
+  const ref = useRef(null);
+  const inViewResult = useInView(ref, { once: true, margin: inViewMargin });
+  const isInView = !inView || inViewResult;
+
+  return (
+    <AnimatePresence>
+      <motion.div ref={ref} className={className}>
+        {React.Children.map(children, (child, index) => (
+          <BlurFade
+            key={index}
+            {...blurFadeProps}
+            yOffset={yOffset}
+            delay={delay ? delay + index * staggerDelay : index * staggerDelay}
+            inView={isInView}
+          >
+            {child}
+          </BlurFade>
+        ))}
       </motion.div>
     </AnimatePresence>
   );
