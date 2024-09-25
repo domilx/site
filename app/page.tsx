@@ -1,12 +1,16 @@
 import Link from "next/link";
 import AnimatedName from "@/components/animate-name";
+import BlurFade from "@/components/magicui/blur-fade";
 
 const highlight = 'text-[#FFD700]';
 
 export default function Home() {
   return (
     <>
-      <AnimatedName />
+      <BlurFade delay={0.2}>
+        <AnimatedName />
+      </BlurFade>
+      <BlurFade delay={0.4}>
       <div className="text-white space-y-4 leading-snug font-light">
         <p>
           I'm a computer science student at Dawson College in Montréal Québec, dean's list semi-finalist FRC Alumn, full stack developer, robotics mentor at{' '}
@@ -41,6 +45,7 @@ export default function Home() {
           I'm always looking for new opportunities to learn and grow, so feel free to reach out to me. Or feel free to check out and support my work. It would mean the 🌍
         </p>
       </div>
+      </BlurFade>
     </>
   );
 }
