@@ -17,9 +17,9 @@ export default function Home() {
         className="space-y-4 font-light leading-snug text-white"
       >
         <p>
-          I'm a computer science student at Dawson College in Montréal Québec,
-          dean's list semi-finalist FRC Alumn, full stack developer, robotics
-          mentor at{" "}
+          I&apos;m a computer science student at Dawson College in Montréal
+          Québec, dean&apos;s list semi-finalist FRC Alumn, full stack
+          developer, robotics mentor at{" "}
           <Link href="https://team3990.com" className={highlight}>
             Tech For Kids
           </Link>
@@ -33,8 +33,8 @@ export default function Home() {
           from the ground up.
         </p>
         <p>
-          I'm a software engineer for my team where I build projects and tools
-          for the team, such as a{" "}
+          I&apos;m a software engineer for my team where I build projects and
+          tools for the team, such as a{" "}
           <Link
             href="https://apps.apple.com/us/app/tech-scout/id6446188906"
             className={highlight}
@@ -59,8 +59,8 @@ export default function Home() {
           alerts, smooth communication, and synchronized tunes.
         </p>
         <p>
-          I'm always looking for new opportunities to learn and grow, so feel
-          free to reach out to me. Or feel free to check out and support my
+          I&apos;m always looking for new opportunities to learn and grow, so
+          feel free to reach out to me. Or feel free to check out and support my
           work. It would mean the 🌍
         </p>
       </BlueFadeStaggerChildren>
