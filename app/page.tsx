@@ -1,81 +1,13 @@
-/* eslint-disable react/no-unescaped-entities */
-"use client";
-import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'next-view-transitions';
+import Link from "next/link";
+import AnimatedName from "@/components/animate-name";
 
 const highlight = 'text-[#FFD700]';
-
-function AnimatedName() {
-  const [isHighlighted, setIsHighlighted] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    setIsHighlighted(true);
-  };
-
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setIsHighlighted(false);
-    }, 1000);
-  };
-
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
-
-  return (
-    <h1
-      className="font-medium pt-12 fade-in-up-delayed-top"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <span className="sr-only">Domenico Valentino</span>
-      <span
-        aria-hidden="true"
-        className={`hover:text-[rgb(255,251,0)] block overflow-hidden group relative transition-colors ${
-          isHighlighted ? 'text-[#FFD700]' : ''
-        }`}
-      >
-        <span className="inline-block transition-all duration-300 ease-in-out group-hover:-translate-y-full">
-          {'Domenico Valentino'.split('').map((letter, index) => (
-            <span
-              key={index}
-              className="inline-block"
-              style={{ transitionDelay: `${index * 25}ms` }}
-            >
-              {letter === ' ' ? '\u00A0' : letter}
-            </span>
-          ))}
-        </span>
-        <span className="inline-block absolute left-0 top-0 transition-all duration-300 ease-in-out translate-y-full group-hover:translate-y-0">
-          {'domidev'.split('').map((letter, index) => (
-            <span
-              key={index}
-              className="inline-block"
-              style={{ transitionDelay: `${index * 25}ms` }}
-            >
-              {letter}
-            </span>
-          ))}
-        </span>
-      </span>
-    </h1>
-  );
-}
-
 
 export default function Home() {
   return (
     <>
       <AnimatedName />
-      <div className="text-white space-y-4 leading-snug font-light fade-in-up-delayed">
+      <div className="text-white space-y-4 leading-snug font-light">
         <p>
           I'm a computer science student at Dawson College in Montréal Québec, dean's list semi-finalist FRC Alumn, full stack developer, robotics mentor at{' '}
             <Link href="https://team3990.com" className={highlight}>

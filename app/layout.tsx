@@ -1,7 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { JetBrains_Mono } from 'next/font/google';
-import { ViewTransitions } from 'next-view-transitions';
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin'],
@@ -26,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ViewTransitions>
+    // <ViewTransitions>
       <html lang="en" className={`${jetBrainsMono.className} [scrollbar-gutter:stable] h-full`}>
         <body className="antialiased tracking-tight bg-black h-full flex flex-col justify-between ">
           <header className="w-full text-center pt-4">
@@ -37,14 +36,14 @@ export default function RootLayout({
             </nav> */}
           </header>
           <div className="flex-grow flex flex-col justify-start items-center p-4">
-            <main className="max-w-[60ch] mx-auto w-full space-y-6 fade-in-up-delayed-top">
+            <main className="max-w-[60ch] mx-auto w-full space-y-6">
               {children}
             </main>
           </div>
           <Footer />
         </body>
       </html>
-    </ViewTransitions>
+    // </ViewTransitions>
   );
 }
 
