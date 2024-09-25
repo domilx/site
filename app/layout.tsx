@@ -30,11 +30,11 @@ export default function RootLayout({
       <html lang="en" className={`${jetBrainsMono.className} [scrollbar-gutter:stable] h-full`}>
         <body className="antialiased tracking-tight bg-black h-full flex flex-col justify-between ">
           <header className="w-full text-center pt-4">
-            <nav className="text-[#ffd90081] space-x-8 text-sm tracking-wider">
+            {/* <nav className="text-[#ffd90081] space-x-8 text-sm tracking-wider">
               <a href="/" className="hover:text-[#FFD700] transition">home.</a>
               <a href="/work" className="hover:text-[#FFD700] transition">work.</a>
               <a href="/contact" className="hover:text-[#FFD700] transition">contact.</a>
-            </nav>
+            </nav> */}
           </header>
           <div className="flex-grow flex flex-col justify-start items-center p-4">
             <main className="max-w-[60ch] mx-auto w-full space-y-6 fade-in-up-delayed-top">
