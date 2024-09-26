@@ -68,7 +68,7 @@ function Footer() {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="transition hover:text-white"
+              className="transition hover:text-[rgb(255,251,0)]"
             >
               {link.name}
             </a>
