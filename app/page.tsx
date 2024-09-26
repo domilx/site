@@ -20,13 +20,13 @@ export default function Home() {
           I&apos;m a computer science student at Dawson College in Montréal
           Québec, dean&apos;s list semi-finalist FRC Alumn, full stack
           developer, robotics mentor at{" "}
-          <Link href="https://team3990.com" className={highlight}>
+          <Link href="https://team3990.com" className={`${highlight} hover:text-[rgb(255,251,0)]`}>
             Tech For Kids
           </Link>
           , where I teach students{" "}
           <Link
             href="https://docs.wpilib.org/en/stable/index.html"
-            className={highlight}
+            className={`${highlight} hover:text-[rgb(255,251,0)]`}
           >
             WPILib and Java
           </Link>{" "}
@@ -37,14 +37,14 @@ export default function Home() {
           tools for the team, such as a{" "}
           <Link
             href="https://apps.apple.com/us/app/tech-scout/id6446188906"
-            className={highlight}
+            className={`${highlight} hover:text-[rgb(255,251,0)]`}
           >
             scouting app
           </Link>{" "}
           for the team to use during competitions, or an{" "}
           <Link
             href="https://apps.apple.com/us/app/tech-insights/id6477985456"
-            className={highlight}
+            className={`${highlight} hover:text-[rgb(255,251,0)]`}
           >
             insights app
           </Link>{" "}
@@ -52,7 +52,7 @@ export default function Home() {
         </p>
         <p>
           I work on passion projects like{" "}
-          <Link href="https://cnvyapp.com" className={highlight}>
+          <Link href="https://cnvyapp.com" className={`${highlight} hover:text-[rgb(255,251,0)]`}>
             CNVY
           </Link>
           , an app that turns driving into an adventure with real-time group
