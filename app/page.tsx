@@ -51,18 +51,19 @@ export default function Home() {
           for the team to use to analyze that scouting data.
         </p>
         <p>
-          I work on passion projects like{" "}
-          <Link href="https://cnvyapp.com" className={`${highlight} hover:text-[rgb(255,251,0)]`}>
-            CNVY
-          </Link>
-          , an app that turns driving into an adventure with real-time group
-          alerts, smooth communication, and synchronized tunes.
+          I love reverse engineering old videogame DRMs.
+          Recently, I {" "}
+          <Link
+            href="https://github.com/domilx/NoReelsInstgram/"
+            className={`${highlight} hover:text-[rgb(255,251,0)]`}
+          >
+            reverse engineered Instagram to remove Reels
+          </Link>.
         </p>
         <p>
-          I&apos;m always looking for new opportunities to learn and grow, so
-          feel free to reach out to me. Or feel free to check out and support my
-          work. It would mean the 🌍
+          Always excited to break down barriers and discover new ways to innovate.
         </p>
+
       </BlueFadeStaggerChildren>
     </>
   );

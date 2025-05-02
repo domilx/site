@@ -14,8 +14,8 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   title: {
-    default: "Domenico Valentino",
-    template: "%s | Domenico Valentino",
+    default: "domidev",
+    template: "%s | domidev",
   },
   description:
     "Software Engineer, Computer Science Student, and Robotics Mentor",

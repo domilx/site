@@ -32,7 +32,7 @@ export default function AnimatedName() {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <span className="sr-only">Domenico Valentino</span>
+            <span className="sr-only">domidev</span>
             <span
                 aria-hidden="true"
                 className={`hover:text-[rgb(255,251,0)] block overflow-hidden group relative transition-colors ${
@@ -40,7 +40,7 @@ export default function AnimatedName() {
                 }`}
             >
         <span className="inline-block transition-all duration-300 ease-in-out group-hover:-translate-y-full">
-          {'Domenico Valentino'.split('').map((letter, index) => (
+          {'domidev'.split('').map((letter, index) => (
               <span
                   key={index}
                   className="inline-block"
