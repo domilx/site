@@ -41,7 +41,7 @@ export default function RootLayout({
             </nav> */}
         </header>
         <div className="flex flex-grow flex-col items-center justify-start p-4">
-          <main className="mx-auto w-full max-w-[60ch] space-y-6">
+          <main className="mx-auto w-full max-w-[90ch] space-y-6">
             {children}
           </main>
         </div>
