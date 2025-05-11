@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "highlight.js/styles/github-dark.css";
 
 @layer base {
   :root {
@@ -108,6 +109,12 @@ a {
   color: inherit; /* Inherit text color */
   text-decoration: none;
   position: relative;
+}
+
+.hljs {
+  border-radius: 0.5rem;   /* same rounded look as other code */
+  padding: 1rem;
+  background: #1d1d1d;     /* override theme bg so it matches Tailwind card */
 }
 
 a::after {

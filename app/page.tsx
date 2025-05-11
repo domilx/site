@@ -54,7 +54,7 @@ export default function Home() {
           I love reverse engineering old videogame DRMs.
           Recently, I {" "}
           <Link
-            href="https://github.com/domilx/NoReelsInstgram/"
+            href="https://github.com/domilx/NoReelsInstagram/"
             className={`${highlight} hover:text-[rgb(255,251,0)]`}
           >
             reverse engineered Instagram to remove Reels
