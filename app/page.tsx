@@ -20,7 +20,7 @@ export default function Home() {
           I&apos;m a computer science student at Dawson College in Montréal
           Québec, dean&apos;s list semi-finalist FRC Alumn, full stack
           developer, robotics mentor at{" "}
-          <Link href="https://team3990.com" className={`${highlight} hover:text-[rgb(255,251,0)]`}>
+          <Link href="https://www.team3990.com" className={`${highlight} hover:text-[rgb(255,251,0)]`}>
             Tech For Kids
           </Link>
           , where I teach students{" "}
