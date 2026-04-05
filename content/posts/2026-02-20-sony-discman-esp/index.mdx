@@ -1,0 +1,100 @@
+---
+title: "Inside a Sony D-EJ01: reverse engineering anti-skip protection"
+date: "2026-02-20"
+description: "How a $30 thrift store find turned into a deep dive on embedded DSP and buffer management."
+---
+
+## The find
+
+There's a thrift store on Rue Saint-Denis that has a shelf of old electronics nobody touches. Walkmans, clock radios, universal remotes for TVs that don't exist anymore. Last month I spotted a Sony D-EJ01 Discman sitting between a label maker and a broken baby monitor.
+
+$30. Batteries not included. "G-Protection" printed on the lid in that distinctive early-2000s Sony font.
+
+I wasn't shopping for a portable CD player. But I'd always been curious about how anti-skip actually worked — like, what's *really* happening inside when you're jogging and the music doesn't cut out? So I bought it.
+
+Brought it home, popped in two AAs and a copy of *Discovery* by Daft Punk. Still works perfectly. The laser tracked, the headphone amp was clean, and G-Protection held up when I shook it around. Twenty-plus years old and still doing its job.
+
+Time to open it up.
+
+## What G-Protection claims
+
+Sony's marketing was simple: "up to 100 seconds of anti-skip protection for CD audio." The idea is that the player reads ahead of the current playback position, stores the data in a buffer, and if the laser gets knocked off track by a bump or vibration, it plays from the buffer while the servo system re-acquires the track.
+
+Every portable CD player manufacturer had their own version of this. Sony called it G-Protection (the G standing for... gyroscope? gravity? nobody seems sure). Panasonic had S-XBS (shock), and various no-name brands just called it "Electronic Skip Protection" or ESP.
+
+But 100 seconds of audio is a lot of data. CD audio is 1,411 kbps uncompressed — that's about 17 megabytes per 100 seconds. In a device from 2001. With a BOM cost target of probably $40. How?
+
+## Under the lid
+
+Four screws and the bottom plate comes off. The guts of the D-EJ01 are remarkably clean — Sony's industrial engineering in this era was genuinely impressive.
+
+The key components:
+
+- **Sony CXD2680GA** — the main DSP/decoder IC. This handles everything: CD signal processing, CIRC error correction, de-interleaving, and the anti-skip buffer management.
+- **2x Hynix HY57V641620 SDRAM** — two 64-megabit (8MB) SDRAM chips. 16MB total. That's where the buffer lives.
+- **Sony CXA2570Q** — the analog signal processing IC. Handles the RF signal from the optical pickup and feeds it to the DSP.
+- **Sony CXD9774M** — servo/motor controller. Manages the spindle motor, sled motor, and tracking/focus servos.
+
+The 16MB of RAM is the key revelation. CD audio at 1,411 kbps is about 176 KB per second. 16MB / 176KB = ~93 seconds. Factor in error correction overhead and you're right at that "100 seconds" spec. They weren't lying — they literally had enough RAM to buffer 100 seconds of decoded PCM audio.
+
+## How it actually works
+
+The read-ahead system operates in a cycle:
+
+**Phase 1 — Sprint read.** The disc spins up to high speed (much faster than 1x playback rate). The optical pickup reads data as fast as the servo system can track, and the DSP decodes it into PCM audio and writes it to the SDRAM buffer. During this phase, the buffer is filling faster than it's draining.
+
+**Phase 2 — Coast.** Once the buffer reaches a high-water mark (near capacity), the controller does something clever: it *stops the disc entirely*. The spindle motor powers down, the laser turns off, and the entire optical assembly goes to sleep. Playback continues from the buffer alone. This saves enormous amounts of power — the optical system is by far the biggest power draw in the device.
+
+**Phase 3 — Refill.** When the buffer drains to a low-water mark, the system wakes up: spindle spins up, laser re-acquires the track, and the sprint-read cycle begins again.
+
+This is why portable CD players from this era had that characteristic pattern of activity — the disc would spin, stop, spin, stop, in irregular bursts. The player was literally only using the disc intermittently and running on buffer the rest of the time.
+
+**The anti-skip behavior is almost a side effect.** The primary purpose of the buffer was power management — extending battery life by minimizing how long the disc needs to spin. The fact that it also survives shocks is a consequence of having the data cached in solid-state memory.
+
+## Error correction: the unsung hero
+
+But the buffer alone isn't enough. What happens when a shock occurs *during* a read cycle and the laser bounces off track?
+
+This is where the CIRC (Cross-Interleaved Reed-Solomon Code) error correction comes in, and it's worth understanding because it's one of the most elegant pieces of engineering in the entire CD standard.
+
+CD audio data isn't stored sequentially on the disc. It's interleaved — each frame of audio data is scrambled and spread across multiple physical locations on the disc. This means that a scratch or a laser skip that corrupts a contiguous physical region only damages non-contiguous logical data. The errors get spread out instead of concentrated.
+
+The Reed-Solomon code then corrects these dispersed errors. The system uses two levels:
+
+- **C1 decoder** — corrects single-byte errors and detects multi-byte errors within a frame
+- **C2 decoder** — after de-interleaving, corrects the errors that C1 couldn't handle
+
+The CXD2680GA can correct up to about 2.5mm of continuous disc damage (roughly a 4000-sample gap). If the damage exceeds that, it falls back to interpolation — mathematically estimating what the missing samples should be based on the surrounding data. Human ears can't detect interpolated gaps of up to about 50 samples.
+
+When a shock happens during reading, the servo system detects the tracking loss, pauses the read, re-acquires the track (usually within 100-300ms), and resumes. The DSP notes which sectors were missed and, if the same data is still in the C1/C2 pipeline, it retries. If the data was already past the buffer's read pointer, it seeks back and re-reads.
+
+## The servo ballet
+
+The re-acquisition after a shock is its own miniature engineering marvel. The sled servo (coarse positioning) and tracking servo (fine positioning) work together in a sequence:
+
+1. **Shock detected** — the tracking error signal exceeds threshold, meaning the laser has left the track
+2. **Brake** — tracking servo goes into hold mode, laser stays on
+3. **Search** — the focus servo re-acquires focus on the disc surface
+4. **Track capture** — the tracking servo sweeps until it finds a track crossing pattern
+5. **Address read** — the system reads the subcode Q channel to figure out *where* on the disc it landed
+6. **Seek** — if the current position doesn't match where it needs to be, the sled motor moves to the correct location
+7. **Fine lock** — tracking servo locks onto the correct track and reading resumes
+
+All of this happens in about 200-500ms. You'd never notice it while listening because the buffer still has 90+ seconds of audio to play through.
+
+## What struck me
+
+The D-EJ01 shipped in 2001 for something like $100 retail. For that price, you got:
+
+- A custom DSP running real-time error correction at megabit rates
+- 16MB of SDRAM with a sophisticated buffer management algorithm
+- A multi-axis servo control system that could re-acquire a target on a spinning disc within 200ms
+- Power management clever enough to eke 30+ hours from two AA batteries
+
+All packed into a case thinner than most smartphones. No firmware updates, no internet connection, no app required. You put a disc in and it played music. If you dropped it, it kept playing music.
+
+There's a design philosophy in here that I think we've lost somewhat. Not just "make it simple" — but make it *resilient*. Every subsystem in this player was designed with the assumption that things would go wrong, and the engineering was about recovering gracefully rather than preventing failure entirely.
+
+The D-EJ01 sits on my desk now. I use it sometimes, running audio through a 3.5mm-to-USB DAC into my monitors. It sounds good — probably placebo, but there's something about the signal chain that feels warm.
+
+Or maybe I just like the sound of the disc spinning up.

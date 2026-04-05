@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "/Users/domen/.nvm/versions/node/v22.22.0/bin/node",
+      "runtimeArgs": ["/Users/domen/Desktop/site/node_modules/.bin/next", "dev"],
+      "port": 3000
+    }
+  ]
+}
