@@ -181,13 +181,14 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  column-gap: 22px;
-  row-gap: 2px;
   padding: 6px 20px 7px;
-  font-size: 10px;
-  letter-spacing: 0.08em;
+}
+.subbar-place {
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  margin-right: -0.32em;
   color: #8a8a8a;
+  text-shadow: 0 1px 0 #fff;
 }
 
 /* ============================================================

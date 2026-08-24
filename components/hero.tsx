@@ -22,8 +22,8 @@ export default function Hero() {
             className="rise rise-3 mx-auto mt-6 max-w-[46ch] text-[13px] leading-relaxed md:mx-0"
             style={{ color: "var(--mist)" }}
           >
-            Computer Engineering at McGill. Firmware, reverse engineering,
-            pathology automation. After dark, behind the decks. The sets land
+            I study computer engineering at McGill, write firmware, and
+            reverse engineer old hardware. After dark I DJ. My sets go up
             here, audio and video.
           </p>
           <div className="rise rise-3 mt-8 flex justify-center gap-3 md:justify-start">

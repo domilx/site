@@ -14,9 +14,9 @@ export default function AboutSection() {
           style={{ color: "var(--mist)" }}
         >
           <p>
-            Computer Engineering student at McGill. Co-founder of Kaskaraa
-            Instruments, where we automate pathology and I write everything
-            that runs on a screen.
+            I&rsquo;m a computer engineering student at McGill and co-founder
+            of Kaskaraa Instruments, where we automate pathology and I write
+            everything that runs on a screen.
           </p>
           <p>
             I reverse engineer iOS apps and long-dead copy protection,

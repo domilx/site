@@ -90,8 +90,8 @@ export default function SetsSection({ sets }: { sets: DjSet[] }) {
               className="max-w-[40ch] text-[11px]"
               style={{ color: "var(--ghost)" }}
             >
-              The first set is being recorded. When it&rsquo;s ready, it plays
-              right here.
+              I&rsquo;ll put the first one up as soon as it&rsquo;s recorded.
+              It will play right here.
             </p>
           </div>
         ) : (

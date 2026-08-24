@@ -47,7 +47,7 @@ export default function Footer() {
           className="py-2 text-center text-[10px]"
           style={{ color: "var(--ghost)" }}
         >
-          Made in Montréal.
+          made in montréal
         </p>
       </div>
     </footer>

@@ -6,15 +6,6 @@ const TABS = [
   { label: "Contact", href: "#contact" },
 ];
 
-const SUBBAR = [
-  "music production",
-  "dj sets",
-  "reverse engineering",
-  "embedded systems",
-  "swift",
-  "6502 assembly",
-  "montréal",
-];
 
 export default function NavTabs() {
   return (
@@ -39,9 +30,7 @@ export default function NavTabs() {
       </nav>
       <div className="subbar">
         <div className="subbar-row">
-          {SUBBAR.map((s) => (
-            <span key={s}>{s}</span>
-          ))}
+          <span className="subbar-place">montréal</span>
         </div>
       </div>
     </header>

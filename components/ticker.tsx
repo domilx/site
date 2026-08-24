@@ -4,7 +4,7 @@ export default function Ticker() {
   const latest = SETS[0];
   const line = latest
     ? `Fresh on the platter: ${latest.title} (${latest.style}, ${latest.length}).`
-    : "The booth is warming up. First recordings land here soon.";
+    : "My first recorded set is on its way.";
 
   return (
     <div className="ticker pinstripe">
