@@ -1,32 +1,20 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Space_Grotesk, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-body",
-});
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
-});
-
-const jetBrainsMono = JetBrains_Mono({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["300", "400"],
-  variable: "--font-mono",
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://domidev.net"),
   alternates: { canonical: "/" },
-  title: { default: "domidev", template: "%s — domidev" },
+  title: { default: "domidev", template: "%s · domidev" },
   description:
-    "Software & hardware engineer. CS at McGill. Co-founder of Kaskaraa Instruments. Product Specialist at Apple.",
+    "Software, hardware, and DJ sets. The personal site of Domenico Valentino.",
 };
 
 export default function RootLayout({
@@ -35,10 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${spaceGrotesk.variable} ${instrumentSerif.variable} ${jetBrainsMono.variable}`}
-    >
+    <html lang="en" className={cormorant.variable}>
       <body>{children}</body>
     </html>
   );

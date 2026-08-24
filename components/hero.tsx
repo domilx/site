@@ -1,68 +1,41 @@
-"use client";
-
-import { motion } from "framer-motion";
-import TextReveal, { LineReveal } from "./text-reveal";
+import Disc from "./disc";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[100svh] flex-col justify-center px-6 md:px-12 lg:px-20">
-      {/* Main title */}
-      <div className="space-y-2">
-        <TextReveal
-          text="DOMIDEV"
-          delay={0.3}
-          stagger={0.06}
-          duration={1}
-          className="text-[clamp(4.5rem,16vw,14rem)] font-bold leading-[0.85] tracking-[-0.04em] text-white"
-        />
-        <TextReveal
-          text="domenico VALENTINO"
-          delay={0.6}
-          stagger={0.04}
-          duration={1}
-          className="text-[clamp(2rem,7vw,6rem)] leading-[1] tracking-[-0.02em] text-white/40"
-          as="div"
-        />
+    <section className="shell">
+      <div className="grid items-center gap-10 py-16 md:grid-cols-[minmax(0,380px)_1fr] md:gap-6 md:py-24">
+        <div className="rise rise-1 order-2 md:order-1">
+          <Disc />
+        </div>
+
+        <div className="order-1 text-center md:order-2 md:pl-6 md:text-left">
+          <h1 className="display rise rise-2 text-[clamp(3.4rem,9vw,6.2rem)] leading-[1.02]">
+            Code. Solder. Mix.
+          </h1>
+          <p
+            className="display rise rise-2 mt-4 text-[clamp(1.3rem,3vw,1.8rem)] italic"
+            style={{ color: "var(--mist)" }}
+          >
+            The personal site of Domenico Valentino.
+          </p>
+          <p
+            className="rise rise-3 mx-auto mt-6 max-w-[46ch] text-[13px] leading-relaxed md:mx-0"
+            style={{ color: "var(--mist)" }}
+          >
+            Computer Engineering at McGill. Firmware, reverse engineering,
+            pathology automation. After dark, behind the decks. The sets land
+            here, audio and video.
+          </p>
+          <div className="rise rise-3 mt-8 flex justify-center gap-3 md:justify-start">
+            <a href="#sets" className="gel gel--pill">
+              Play the sets
+            </a>
+            <a href="#about" className="gel gel--graphite gel--pill">
+              Who is this
+            </a>
+          </div>
+        </div>
       </div>
-
-      {/* Subtitle */}
-      <LineReveal delay={1.2} duration={0.8}>
-        <p
-          className="mt-8 text-[clamp(0.7rem,1.1vw,0.85rem)] uppercase tracking-[0.35em] text-white/25"
-          style={{ fontFamily: "var(--font-mono)" }}
-        >
-          Software &middot; Hardware &middot; Everything between
-        </p>
-      </LineReveal>
-
-      {/* Line */}
-      <motion.div
-        className="mt-10 h-px bg-white/10 origin-left"
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 1.2, delay: 1.5, ease: [0.33, 1, 0.68, 1] }}
-      />
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-      >
-        <span
-          className="text-[10px] uppercase tracking-[0.4em] text-white/15"
-          style={{ fontFamily: "var(--font-mono)" }}
-        >
-          Scroll
-        </span>
-        <motion.div
-          className="h-8 w-px bg-white/20"
-          animate={{ scaleY: [0, 1, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          style={{ transformOrigin: "top" }}
-        />
-      </motion.div>
     </section>
   );
 }
