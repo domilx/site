@@ -1,53 +1,48 @@
 const LINKS = [
-  { label: "GitHub", href: "https://github.com/domilx" },
-  { label: "Email", href: "mailto:hello@domidev.net" },
-  { label: "Instagram", href: "https://www.instagram.com/domenico.valentino27/" },
+  { label: "Email me", href: "mailto:domenico2727@icloud.com" },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/domenico-valentino-686454305/",
   },
-  { label: "Kaskaraa", href: "https://www.kaskaraa.com" },
+  { label: "GitHub", href: "https://github.com/domilx" },
 ];
 
 export default function Footer() {
   return (
-    <footer
-      id="contact"
-      className="scroll-mt-6 border-t"
-      style={{ borderColor: "var(--hairline)" }}
-    >
-      <div className="shell py-12 text-center md:py-14">
-        <h2 className="display text-[clamp(1.7rem,4vw,2.1rem)]">
-          Say hello.
-        </h2>
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5">
-          {LINKS.map((l) => {
-            const external = l.href.startsWith("http");
-            return (
-              <a
-                key={l.label}
-                href={l.href}
-                className="gel gel--graphite gel--pill"
-                {...(external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-              >
-                {l.label}
-              </a>
-            );
-          })}
-        </div>
-        <p className="mt-10 text-[10px]" style={{ color: "var(--ghost)" }}>
-          Copyright &copy; {new Date().getFullYear()} Domenico Valentino. All
-          rights reserved.
+    <footer id="contact" className="contact-section section-anchor">
+      <div className="shell">
+        <p className="eyebrow">Contact</p>
+        <h2 className="display">Let’s talk engineering.</h2>
+        <p className="contact-note">
+          Software, embedded systems, robotics or audio.
+          <br />
+          Based in Montréal. Open to relocating.
         </p>
-      </div>
-      <div className="pinstripe border-t" style={{ borderColor: "var(--hairline)" }}>
-        <p
-          className="py-2 text-center text-[10px]"
-          style={{ color: "var(--ghost)" }}
-        >
-          made in montréal
+        <div className="contact-links">
+          {LINKS.map((link, index) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className={`gel gel--pill${index ? "gel--graphite" : ""}`}
+              {...(link.href.startsWith("http")
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+        <div className="resume-links">
+          <span>Download CV</span>
+          <a href="/cv/Domenico_Valentino_Software_CV.pdf" download>
+            Software
+          </a>
+          <a href="/cv/Domenico_Valentino_Embedded_Robotics_CV.pdf" download>
+            Embedded &amp; robotics
+          </a>
+        </div>
+        <p className="copyright">
+          © {new Date().getFullYear()} Domenico Valentino · Made in Montréal
         </p>
       </div>
     </footer>

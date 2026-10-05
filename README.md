@@ -1,6 +1,8 @@
 # domidev
 
-The personal site of Domenico Valentino: software, hardware, and DJ sets.
+The engineering portfolio of Domenico Valentino: software, embedded systems,
+robotics, and audio. The site highlights OverCue, FIRST Robotics, Kaskaraa
+Instruments and a working 6502 computer, alongside McGill and Apple experience.
 A fully static one-pager built with Next.js (`output: "export"`).
 
 ## Develop
@@ -16,6 +18,17 @@ npm run build
 ```
 
 The exported site lands in `out/`.
+
+## Portfolio content
+
+- Project summaries and contribution details: `components/promo-grid.tsx`
+- Education, Apple and teaching experience: `components/about-section.tsx`
+- Intro and CV links: `components/hero.tsx`
+- Downloadable CVs: `public/cv/`
+- Search and social metadata: `app/layout.tsx`
+
+Keep confidential project methods and partner details out of the public copy.
+Updating a CV means replacing its PDF in `public/cv/`.
 
 ## Posting a set
 

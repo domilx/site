@@ -2,28 +2,54 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="scroll-mt-6 border-t"
-      style={{ borderColor: "var(--hairline)" }}
+      className="about-section section-anchor"
+      aria-labelledby="about-title"
     >
-      <div className="shell max-w-[700px] py-16 text-center md:py-20">
-        <h2 className="display text-[clamp(1.9rem,4.5vw,2.5rem)] leading-snug">
-          In short.
-        </h2>
-        <div
-          className="mx-auto mt-7 max-w-[54ch] space-y-4 text-left text-[13px] leading-relaxed md:text-center"
-          style={{ color: "var(--mist)" }}
-        >
-          <p>
-            I&rsquo;m a computer engineering student at McGill and co-founder
-            of Kaskaraa Instruments, where we automate pathology and I write
-            everything that runs on a screen.
-          </p>
-          <p>
-            I reverse engineer iOS apps and long-dead copy protection,
-            breadboard old processors, and debug firmware with an oscilloscope.
-            When the bench cools down, I make music and play long sets.
-          </p>
+      <div className="shell">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Background</p>
+            <h2 id="about-title" className="display">
+              Working with people.
+            </h2>
+          </div>
         </div>
+        <div className="background-grid">
+          <div>
+            <span className="background-label">McGill University</span>
+            <h3>Computer Engineering</h3>
+            <p>
+              I came to McGill through CEGEP at Dawson College, where I studied
+              Mathematics and Computer Science. I like understanding a system
+              well enough to build and debug it myself.
+            </p>
+          </div>
+          <div>
+            <span className="background-label">Apple</span>
+            <h3>Product Specialist</h3>
+            <p>
+              On the retail floor, I became a technical resource for colleagues.
+              I explain product capabilities in plain language and help
+              customers understand why a system behaves the way it does.
+            </p>
+          </div>
+          <div>
+            <span className="background-label">FIRST Robotics</span>
+            <h3>Teaching &amp; team leadership</h3>
+            <p>
+              I taught programming to students with no prior experience, then
+              helped them build robot controls. Leading a team meant delegating
+              work, reviewing pull requests and testing together.
+            </p>
+          </div>
+        </div>
+        <div className="skills-line">
+          <span>Tools I work with</span>
+          <p>C/C++ · Rust · Java · TypeScript · Python · Swift · Git · Linux</p>
+        </div>
+        <p className="languages">
+          English &amp; French · Italian &amp; Spanish conversational
+        </p>
       </div>
     </section>
   );
