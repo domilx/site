@@ -28,12 +28,10 @@ export default function Hero() {
           </a>
         </div>
         <div className="resume-links" aria-label="Download my CV">
-          <span>Download CV</span>
-          <a href="/cv/Domenico_Valentino_Software_CV.pdf" download>
-            Software
-          </a>
-          <a href="/cv/Domenico_Valentino_Embedded_Robotics_CV.pdf" download>
-            Embedded &amp; robotics
+          <span>CVs</span>
+          <a href="/cv/Domenico_Valentino_Software_CV.pdf">Software CV (PDF)</a>
+          <a href="/cv/Domenico_Valentino_Embedded_Robotics_CV.pdf">
+            Embedded &amp; robotics CV (PDF)
           </a>
         </div>
       </div>
